@@ -1,3 +1,3 @@
 # Payrix
 API wrapper for Payrix 
-https://portal.payrix.com/docs/api
+https://test-portal.splashpayments.com/docs/api
