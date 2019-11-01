@@ -12,7 +12,7 @@ module Payrix
                :login, :merchant, :customer, :subscription, :number, 
                :title, :message, :emails, :total, :tax, 
                :discount, :type, :status, :dueDate, :expirationDate, 
-               :sendOn, :emailStatus, :inactive, :frozen]
+               :sendOn, :emailStatus, :inactive, :frozen, :allowedPaymentMethods]
 
       attr_accessor *ATTRS
 

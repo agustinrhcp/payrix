@@ -12,10 +12,11 @@ module Payrix
       end
 
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
-               :entity, :onentity, :fromentity, :fund, :fee, 
-               :disbursement, :refund, :txn, :chargeback, :adjustment, 
-               :event, :eventId, :description, :amount, :unsourced, 
-               :pending, :profitShare, :originalCurrency, :currencyRate, :isFee]
+               :entity, :onentity, :fromentity, :opposingEntry, :fund, 
+               :fee, :disbursement, :refund, :txn, :chargeback, 
+               :adjustment, :event, :eventId, :description, :amount, 
+               :unsourced, :pending, :profitShare, :originalCurrency, :currencyRate, 
+               :isFee]
 
       attr_accessor *ATTRS
 

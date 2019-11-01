@@ -11,7 +11,8 @@ module Payrix
       end
 
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
-               :aggregation, :resource, :search, :totals, :lastModified]
+               :aggregation, :resource, :search, :totals, :lastModified, 
+               :effective, :default, :type, :level]
 
       attr_accessor *ATTRS
 

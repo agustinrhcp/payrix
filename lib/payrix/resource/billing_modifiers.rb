@@ -1,16 +1,16 @@
 module Payrix
   module Resource
-    class AlertActions < Base
+    class BillingModifiers < Base
 
       def initialize(params)
         super(params, ATTRS)
 
-        @resource_name = 'alertActions'
+        @resource_name = 'billingModifiers'
       end
 
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
-               :type, :options, :value, :alert, :retries, 
-               :headerName, :headerValue]
+               :billing, :entity, :org, :division, :fromentity, 
+               :inactive, :frozen]
 
       attr_accessor *ATTRS
 

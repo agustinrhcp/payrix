@@ -1,17 +1,18 @@
 module Payrix
   module Resource
-    class Batches < Base
+    class EntityDebts < Base
 
+      include Mixin::UpdateDisabled
       include Mixin::DeleteDisabled
+      include Mixin::CreateDisabled
       def initialize(params)
         super(params, ATTRS)
 
-        @resource_name = 'batches'
+        @resource_name = 'entityDebts'
       end
 
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
-               :merchant, :date, :status, :clientRef, :inactive, 
-               :frozen, :processingDate, :processingId]
+               :entity, :toentity]
 
       attr_accessor *ATTRS
 

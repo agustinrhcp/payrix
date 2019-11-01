@@ -10,7 +10,8 @@ module Payrix
 
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
                :customer, :payment, :token, :expiration, :inactive, 
-               :frozen, :name, :description, :custom, :authTokenCustomer]
+               :frozen, :name, :description, :custom, :authTokenCustomer, 
+               :status]
 
       attr_accessor *ATTRS
 

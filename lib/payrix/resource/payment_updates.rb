@@ -12,7 +12,7 @@ module Payrix
       end
 
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
-               :paymentUpdateGroup, :payment, :status, :subscriptionToken, :account, 
+               :paymentUpdateGroup, :payment, :status, :token, :account, 
                :clientRef, :message, :expiration]
 
       attr_accessor *ATTRS

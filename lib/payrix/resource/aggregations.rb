@@ -11,7 +11,9 @@ module Payrix
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
                :login, :name, :description, :resource, :search, 
                :totals, :status, :schedule, :scheduleFactor, :start, 
-               :inactive, :frozen]
+               :inactive, :frozen, :entity, :forlogin, :org, 
+               :team, :division, :partition, :type, :level, 
+               :default]
 
       attr_accessor *ATTRS
 

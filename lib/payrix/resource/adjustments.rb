@@ -13,7 +13,7 @@ module Payrix
 
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
                :login, :entity, :fromentity, :description, :amount, 
-               :currency]
+               :currency, :onentity]
 
       attr_accessor *ATTRS
 

@@ -16,7 +16,7 @@ module Payrix
                :entry, :adjustment, :chargeback, :disbursement, :fee, 
                :refund, :txn, :event, :eventId, :description, 
                :amount, :pending, :profitShare, :originalCurrency, :currencyRate, 
-               :terminalTxn, :isFee]
+               :terminalTxn, :isFee, :entityDebt]
 
       attr_accessor *ATTRS
 

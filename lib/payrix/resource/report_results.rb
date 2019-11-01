@@ -1,17 +1,18 @@
 module Payrix
   module Resource
-    class Batches < Base
+    class ReportResults < Base
 
+      include Mixin::UpdateDisabled
       include Mixin::DeleteDisabled
       def initialize(params)
         super(params, ATTRS)
 
-        @resource_name = 'batches'
+        @resource_name = 'reportResults'
       end
 
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
-               :merchant, :date, :status, :clientRef, :inactive, 
-               :frozen, :processingDate, :processingId]
+               :report, :type, :documentType, :original, :status, 
+               :effective, :inactive, :frozen]
 
       attr_accessor *ATTRS
 

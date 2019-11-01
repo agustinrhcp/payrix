@@ -19,7 +19,8 @@ module Payrix
                :clientIp, :first, :middle, :last, :company, 
                :email, :address1, :address2, :city, :state, 
                :zip, :country, :phone, :status, :reserved, 
-               :checkStage, :inactive, :frozen, :forterminalTxn, :payment]
+               :checkStage, :inactive, :frozen, :forterminalTxn, :token, 
+               :payment]
 
       attr_accessor *ATTRS
 

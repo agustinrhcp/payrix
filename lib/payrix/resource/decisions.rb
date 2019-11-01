@@ -13,7 +13,8 @@ module Payrix
                :target, :action, :sequence, :amount, :value, 
                :period, :periodFactor, :low, :high, :inactive, 
                :frozen, :division, :application, :options, :errorMessage, 
-               :reason, :additionalOptions, :level]
+               :reason, :additionalOptions, :level, :schedule, :scheduleFactor, 
+               :start, :finish]
 
       attr_accessor *ATTRS
 

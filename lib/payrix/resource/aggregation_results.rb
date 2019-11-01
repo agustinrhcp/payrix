@@ -12,7 +12,7 @@ module Payrix
 
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
                :aggregationResultGroup, :field, :count, :sum, :min, 
-               :max]
+               :max, :grouping]
 
       attr_accessor *ATTRS
 
