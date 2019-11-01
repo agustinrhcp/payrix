@@ -4,9 +4,9 @@ module Payrix
   class Configuration
     attr_reader :url
     attr_accessor :api_key, :session_key, :exception_enabled
-    
+
     def initialize
-      @url = 'https://test-api.splashpayments.com'
+      @url = ENV["PAYRIX_API_URL"]
       @api_key = ''
       @session_key = ''
       @exception_enabled = true
