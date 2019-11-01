@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = Payrix::VERSION
   spec.summary       = %q{Ruby bindings for the Payrix API}
   spec.description   = %q{Defines ruby classes for the Payrix API}
-  spec.homepage      = "https://test-portal.splashpayments.com/docs/api"
+  spec.homepage      = "https://portal.payrix.com/docs/api"
   spec.author        = "Payrix"
   spec.files         = Dir['lib/**/*.rb']
   spec.require_paths = ["lib"]
