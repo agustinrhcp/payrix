@@ -77,6 +77,34 @@ module Payrix
         @response.nil? ? true : @response.has_more?
       end
 
+      def self.resource_name(resource_name)
+        resource_name resource_name
+      end
+
+      def self.find(id)
+        if !id
+          if Payrix.configuration.exception_enabled
+            raise Payrix::Exceptions::InvalidRequest.new('ID is required for this action')
+          else
+            return false
+          end
+        end
+
+        headers = build_headers
+        headers['Content-Type'] = "application/json"
+        method = 'get'
+        url = Payrix.configuration.url
+        endpoint = "#{@resource_name}/#{id}"
+        data = {}
+
+        body, status = Payrix::Http::Request.instance.send_http(method, url, endpoint, data, headers)
+        response = Payrix::Http::Response.new(body, status, self.class)
+
+        validate_response(response)
+
+        new(body['response']['data'].first)
+      end
+
       def retrieve(params = {})
         set(params)
 
@@ -112,8 +140,8 @@ module Payrix
 
       def create(params = {})
         set(params)
-        
-        headers = build_headers
+
+        headers = self.class.build_headers
         headers['Content-Type'] = "application/json"
         method = 'post'
         url = Payrix.configuration.url
@@ -129,14 +157,14 @@ module Payrix
       def update(params = {})
         set(params)
 
-        if !id 
+        if !id
           if Payrix.configuration.exception_enabled
             raise Payrix::Exceptions::InvalidRequest.new('ID is required for this action')
           else
             return false
           end
         end
-        
+
         headers = build_headers
         headers['Content-Type'] = "application/json"
         method = 'put'
@@ -153,7 +181,7 @@ module Payrix
       def delete(params = {})
         set(params)
 
-        if !id 
+        if !id
           if Payrix.configuration.exception_enabled
             raise Payrix::Exceptions::InvalidRequest.new('ID is required for this delete')
           else
@@ -174,8 +202,7 @@ module Payrix
         validate_response
       end
 
-    protected
-      def build_headers()
+      def self.build_headers
         config = Payrix.configuration
 
         if !config.url
@@ -192,7 +219,9 @@ module Payrix
 
         headers
       end
-      
+
+    protected
+
       def build_search(values = {})
         values
           .delete_if { |k, v| v.nil? || v.empty? }
@@ -200,8 +229,8 @@ module Payrix
           .join('&')
       end
 
-      def validate_response
-        if @response.has_errors?
+      def self.validate_response(response)
+        if response.has_errors?
           if Payrix.configuration.exception_enabled
             raise Payrix::Exceptions::ApiError.new('There are errors in the response')
           end

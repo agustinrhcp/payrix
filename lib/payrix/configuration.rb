@@ -6,7 +6,7 @@ module Payrix
     attr_accessor :api_key, :session_key, :exception_enabled
 
     def initialize
-      @url = ENV["PAYRIX_API_URL"]
+      @url = 'https://api.payrix.com'
       @api_key = ''
       @session_key = ''
       @exception_enabled = true

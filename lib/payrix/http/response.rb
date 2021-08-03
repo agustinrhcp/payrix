@@ -20,7 +20,7 @@ module Payrix
       end
 
       def has_errors?
-        !errors.empty?
+        !errors.empty?.tap { |bool| bool and puts(errors) }
       end
 
       def details
