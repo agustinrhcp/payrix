@@ -78,7 +78,11 @@ module Payrix
       end
 
       def self.resource_name(resource_name)
-        resource_name resource_name
+        @resource_name = resource_name
+      end
+
+      def self.get_resource_name
+        @resource_name
       end
 
       def self.find(id)
@@ -138,25 +142,22 @@ module Payrix
         success
       end
 
-      def create(params = {})
-        set(params)
-
-        headers = self.class.build_headers
+      def self.create(params = {})
+        headers = build_headers
         headers['Content-Type'] = "application/json"
         method = 'post'
         url = Payrix.configuration.url
         endpoint = "#{@resource_name}"
-        data = to_json
 
-        body, status = Payrix::Http::Request.instance.send_http(method, url, endpoint, data, headers)
-        @response = Payrix::Http::Response.new(body, status, self.class)
+        body, status = Payrix::Http::Request.instance.send_http(method, url, endpoint, params, headers)
+        response = Payrix::Http::Response.new(body, status, self.class)
 
-        validate_response
+        validate_response(response)
+
+        new(body['response']['data'].first)
       end
 
       def update(params = {})
-        set(params)
-
         if !id
           if Payrix.configuration.exception_enabled
             raise Payrix::Exceptions::InvalidRequest.new('ID is required for this action')
@@ -165,17 +166,19 @@ module Payrix
           end
         end
 
-        headers = build_headers
+        headers = self.class.build_headers
         headers['Content-Type'] = "application/json"
         method = 'put'
         url = Payrix.configuration.url
-        endpoint = "#{@resource_name}/#{id}"
-        data = to_json
+        endpoint = "#{self.class.get_resource_name}/#{id}"
 
-        body, status = Payrix::Http::Request.instance.send_http(method, url, endpoint, data, headers)
-        @response = Payrix::Http::Response.new(body, status, self.class)
+        # I'm hoping it does a patch :fingers_crossed:
+        body, status = Payrix::Http::Request.instance.send_http(method, url, endpoint, params, headers)
+        response = Payrix::Http::Response.new(body, status, self.class)
 
-        validate_response
+        self.class.validate_response(response)
+
+        set(body['response']['data'].first)
       end
 
       def delete(params = {})
